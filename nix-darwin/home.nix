@@ -13,19 +13,37 @@
 		arc-browser
 		# pkgs.bitwarden-desktop
 	];
-	programs.zsh = {
-		enable = true;
-		shellAliases = {
-			switch = "darwin-rebuild switch --flake ~/.config/nix-darwin";
+	programs = {
+		zsh = {
+			enable = true;
+			shellAliases = {
+				switch = "darwin-rebuild switch --flake ~/.config/nix-darwin";
+			};
 		};
-	};
-	programs.vscode = {
-		enable = true;
-		extensions = with pkgs.vscode-extensions; [
-			zhuangtongfa.material-theme
-			jnoortheen.nix-ide
-		];
-	};
-	programs.home-manager.enable = true;
-
+		vscode = {
+			enable = true;
+			extensions = with pkgs.vscode-extensions; [
+				zhuangtongfa.material-theme
+				jnoortheen.nix-ide
+			];
+		};
+		home-manager.enable = true;
+		git = {
+			enable = true;
+			ignores = [ "*.swp" ];
+			userName = "Pete Stenger";
+			userEmail = "pete@stenger.io";
+			lfs = {
+				enable = true;
+			};
+			extraConfig = {
+				init.defaultBranch = "main";
+				core = {
+					editor = "vim";
+					autocrlf = "input";
+				};
+				pull.rebase = true;
+			};
+		};
+  	};
 }
