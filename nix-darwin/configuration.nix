@@ -16,7 +16,6 @@ in {
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
-	system.defaults.NSGlobalDomain."com.apple.swipescrolldirection" = false;
       # Enable alternative shell support in nix-darwin.
       # programs.fish.enable = true;
 
@@ -35,8 +34,24 @@ in {
       local = {
             dock.enable = true;
             dock.entries = [
-                  { path = "/Applications/Safari.app/"; }
+                  { path = "/Applications/Launchpad.app"; }
                   { path = "${pkgs.vscode}/Applications/Visual Studio Code.app/"; }
+                  { path = "${pkgs.arc-browser}/Applications/Arc.app/"; }
+                  { path = "${pkgs.iterm2}/Applications/iTerm2.app"; }
             ];
       };
+	system.defaults.NSGlobalDomain."com.apple.swipescrolldirection" = false;
+      system.keyboard.enableKeyMapping = true;
+      # Swap command and control
+      system.keyboard.userKeyMapping = [
+            {
+                  HIDKeyboardModifierMappingSrc = 30064771296;
+                  HIDKeyboardModifierMappingDst = 30064771299;
+            }
+            {
+                  HIDKeyboardModifierMappingSrc = 30064771299;
+                  HIDKeyboardModifierMappingDst = 30064771296;
+            }
+      ];
+      system.defaults.loginwindow.GuestEnabled = false;
 }

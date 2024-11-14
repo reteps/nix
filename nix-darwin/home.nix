@@ -4,14 +4,12 @@
 	home.stateVersion = "24.05";
 	home.packages = with pkgs; [
 		ripgrep
-		hello
-		kitty
 		vim
 		discord
 		raycast
 		spotify
 		arc-browser
-		# pkgs.bitwarden-desktop
+		iterm2
 	];
 	programs = {
 		zsh = {
